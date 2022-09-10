@@ -12,12 +12,12 @@ public class Main {
   }
 
   public static boolean fieldValidator(int[][] field) {
-    int[][] occupiedFields = new int[field.length][field.length];
+    int[][] fieldsOccupiedByShip = new int[field.length][field.length];
     int[][] shipBeingDiscovered = new int[field.length][field.length];
     List<Integer> shipsizes = new ArrayList<>();
     for (int i = 0; i < field.length; i++) {
       for (int j = 0; j < field.length; j++) {
-        if (occupiedFields[i][j] == 0 && field[i][j] == 1) {
+        if (fieldsOccupiedByShip[i][j] == 0 && field[i][j] == 1) {
           for (int[] row : shipBeingDiscovered) {
             Arrays.fill(row, 0);
           }
@@ -30,7 +30,7 @@ public class Main {
           for (int k = 0; k < shipBeingDiscovered.length; k++) {
             for (int l = 0; l < shipBeingDiscovered.length; l++) {
               if (shipBeingDiscovered[k][l] == 1) {
-                occupiedFields[k][l] = 1;
+                fieldsOccupiedByShip[k][l] = 1;
               }
             }
           }
