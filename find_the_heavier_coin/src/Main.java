@@ -47,15 +47,8 @@ public class Main {
     if (coins.length == 1) {
       return coins[0];
     }
-    int sumFirst = 0;
-    int sumSecond = 0;
-    for (int i = 0; i < coins.length / 2 * 2; i++) {
-      if (i < coins.length / 2) {
-        sumFirst += coins[i].getWeight();
-      } else {
-        sumSecond += coins[i].getWeight();
-      }
-    }
+    int sumFirst = IntStream.range(0, coins.length / 2).mapToObj(i -> coins[i].getWeight()).mapToInt(Integer::intValue).sum();
+    int sumSecond = IntStream.range(coins.length / 2, coins.length / 2 * 2).mapToObj(i -> coins[i].getWeight()).mapToInt(Integer::intValue).sum();
     if (sumFirst > sumSecond) {
       return findTheHeaviest3(IntStream.range(0, coins.length / 2).mapToObj(i -> coins[i]).toArray(Coin[]::new));
     } else if (sumFirst < sumSecond) {
